@@ -1,0 +1,43 @@
+version: '3.8'
+services:   
+    mysql:
+        image: mysql:8.0
+        container_name: cpd-mysql
+        restart: always
+        environment:
+            MYSQL_DATABASE: 'cpdsolution'
+            MYSQL_USER: 'cpd-user'
+            MYSQL_PASSWORD: 'userpw'            
+            MYSQL_ROOT_PASSWORD: 'rootpw'
+        ports:
+            - '3307:3306'
+        expose:
+            - '3306'
+        volumes:
+            - cpd-data:/var/lib/mysql
+            - ./ddl:/docker-entrypoint-initdb.d
+    backend:
+        build:
+            context: backend
+        container_name: cpd-server
+        ports:
+            - '80:80' 
+        depends_on:
+            - mysql
+        environment:
+            DB_HOST: mysql
+            DB_USER: root
+            DB_PASSWORD: rootpw
+            DB_NAME: cpdsolution
+    client:
+        build:
+            context: cpdclient
+        ports:
+            - "3000:3000"
+        depends_on:
+            - backend
+        volumes:
+            - ./cpdclient/src:/app/src
+            - /app/node_modules
+volumes:
+  cpd-data:
