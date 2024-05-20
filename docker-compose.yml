@@ -33,7 +33,7 @@ services:
         build:
             context: cpdclient
         ports:
-            - "3000:3000"
+            - "3000:80"
         depends_on:
             - backend
         volumes:
