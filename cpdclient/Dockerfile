@@ -9,11 +9,6 @@ RUN npm install
 
 COPY . /app
 
-RUN npm run build
+EXPOSE 3000
 
-FROM nginx:alpine
-COPY --from=0 /app/build /usr/share/nginx/html
-
-EXPOSE 80
-
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["sh", "-c", "HOST=0.0.0.0 npm start"]

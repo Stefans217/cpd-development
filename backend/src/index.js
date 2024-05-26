@@ -3,14 +3,22 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mysql = require('mysql2');
+const cors = require('cors');
+const path = require('path');
 
 const app = express();
 app.use(bodyParser.json());
 
 const port = 80;
 
+app.use(express.static(path.join(__dirname, 'client/build')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client/build/index.js'))
+});
+
 app.get('/', (req, res) => {
-  res.send('Hello from the backend!');
+  res.send('Backend Server');
 });
 
 app.listen(port, () => {
@@ -25,6 +33,8 @@ const connection = mysql.createConnection({
   port: 3306
 })
 
+let sql = "SELECT * FROM product;";
+
 connection.connect((err) => {
   if(err){
     console.error('error connection: ', err);
@@ -32,5 +42,15 @@ connection.connect((err) => {
   }
   console.log('connected to database');
 })
+app.get('/')
+connection.query(sql, (err, results) => {
+  if (err) {
+    console.error('Error executing query:', err);
+    return;
+  }
+  console.log('Query results:', results);
+});
+
+
 
 connection.end();
