@@ -7,17 +7,14 @@ function App() {
   return (
     <>
       <Navbar />
-      <BrowserRouter>
+      
         
         <Routes>
 
           <Route path="/" element={<Data />}/>
-          {/* <Route path="*" >
-            <Navigate to="/"/>
-          </Route> */}
 
         </Routes>
-      </BrowserRouter>
+      
     </>
   );
 };
