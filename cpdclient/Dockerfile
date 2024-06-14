@@ -1,14 +1,14 @@
-FROM node:14 AS development
+FROM node:18-slim
 
-WORKDIR /app
+WORKDIR /usr/src/app
 
-COPY package.json /app/package.json
-COPY package-lock.json /app/package-lock.json
+COPY ./package.json .
+COPY ./package-lock.json .
 
 RUN npm install
 
-COPY . /app
+COPY . .
 
-EXPOSE 3000
+EXPOSE 5173
 
-CMD ["sh", "-c", "HOST=0.0.0.0 npm start"]
+CMD ["npm", "run", "dev-exposed"]

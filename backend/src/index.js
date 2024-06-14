@@ -1,15 +1,13 @@
-//server file
-
 const express = require('express');
 const bodyParser = require('body-parser');
-const mysql = require('mysql2');
-const cors = require('cors');
+const pool = require('./dbConnection');
 const path = require('path');
-
-const app = express();
-app.use(bodyParser.json());
+const log = require('./log');
 
 const port = 80;
+const app = express();
+
+app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, 'client/build')));
 
@@ -21,36 +19,42 @@ app.get('/', (req, res) => {
   res.send('Backend Server');
 });
 
+
+
+app.get('/api/businesses', async (req, res) => {
+  res.json({
+    name:"Bill",
+    age:99
+  })
+  // try {
+  //   const connection = await pool.getConnection();
+  //   console.log('Connected to the MySQL server.');
+  //   const [results, fields] = await connection.query('SELECT * FROM business');
+  //   res.json(results);
+  //   console.log(results);
+  //   connection.release();
+  // } catch (error) {
+  //   console.error('Error connecting to the MySQL server:', error);
+  //   res.status(500).json({ error: 'An error occurred while fetching data' });
+  // }
+})
+
+
+// (async () => {
+//   try {
+//     const connection = await pool.getConnection();
+//     console.log('Connected to the MySQL server.');
+//     const [results, fields] = await connection.query('SELECT * FROM business');
+//     // Perform your database operations here
+//     // Example: SELECT * FROM users
+//     console.log(results);
+//     connection.release();
+//   } catch (error) {
+//     console.error('Error connecting to the MySQL server:', error);
+//   }
+// })();
+
+
 app.listen(port, () => {
   console.log(`Backend server is running at http://localhost:${port}`);
 });
-
-const connection = mysql.createConnection({
-  host: 'mysql',  // Hostname
-  user: 'root',   // Username
-  password: 'rootpw',   // Password
-  database: 'cpdsolution', // Database name
-  port: 3306
-})
-
-let sql = "SELECT * FROM product;";
-
-connection.connect((err) => {
-  if(err){
-    console.error('error connection: ', err);
-    return;
-  }
-  console.log('connected to database');
-})
-app.get('/')
-connection.query(sql, (err, results) => {
-  if (err) {
-    console.error('Error executing query:', err);
-    return;
-  }
-  console.log('Query results:', results);
-});
-
-
-
-connection.end();
