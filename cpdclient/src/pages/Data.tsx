@@ -1,25 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/Data.css';
 
+
+interface BusinessData{
+  id: number;
+  name: string;
+  age: number;
+}
+
+
 const Data: React.FC = () => {
 
-  const [data, setData] = useState<any[]>([]);
+  const [data, setData] = useState<BusinessData[]>([]);
 
   useEffect(() => {
-    fetch("/api/businesses")
-    .then(res => res.json())
+    fetch("http://localhost:80/api/businesses", {
+      headers: {
+      Accept: "application/json"
+    }})
+    .then(res => {
+      return res.json();
+    })
     .then(data => setData(data))
+    .catch(error => console.error('Error fetching data', error));
   }, []);
 
-  // const fetchData = async () => {
-  //   try {
-  //     const response = await fetch('/api/businesses');
-  //     const jsonData = await response.json();
-  //     setData(jsonData);
-  //   } catch (error) {
-  //     console.error('Error fetching data', error);
-  //   }
-  // };
 
 
 
@@ -27,12 +32,16 @@ const Data: React.FC = () => {
     <div className="container">
       <h1>Welcome to the Data page</h1>
       <p>See below business data in JSON format:</p>
+       
       <ul>
-        {/* {data.map((item, index) => (
-          <li key={index}>{JSON.stringify(item)}</li>
-        ))} */}
-        <li>{data}</li>
+        {data.map((item) => (
+          <li key={item.id}>
+            Name: {item.name}, Age: {item.age}
+          </li>
+        ))}
       </ul>
+
+      
     </div>
   );
 };
