@@ -9,10 +9,7 @@ build:
 
 # Python version and requirements
 python:
-  version: 3.8
   install:
-    - method: pip
-      path: .
     - requirements: docs/requirements.txt
 
 # Specify additional system packages if needed
@@ -24,29 +21,3 @@ system_packages:
 # MkDocs configuration
 mkdocs:
   configuration: mkdocs.yml
-
-# Define hooks for before and after build
-hooks:
-  - trigger: build
-    command: echo "Starting build process..."
-  - trigger: success
-    command: echo "Build completed successfully."
-  - trigger: failure
-    command: echo "Build failed."
-
-
-
-# Define the formats to build
-formats:
-  - pdf
-  - epub
-
-
-# Submodules configuration
-submodules:
-  include: all
-  recursive: true
-
-# Set the URL for your repository (optional)
-repository:
-  url: https://github.com/Stefans217/cpd-development
