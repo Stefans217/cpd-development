@@ -3,7 +3,9 @@ version: 2
 # Define the build environment
 build:
   os: "ubuntu-20.04"
-  image: latest
+  tools:
+    python: "3.8"
+
 
 # Python version and requirements
 python:
