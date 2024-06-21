@@ -2,6 +2,7 @@ version: 2
 
 # Define the build environment
 build:
+  os: "ubuntu-20.04"
   image: latest
 
 # Python version and requirements
@@ -21,10 +22,6 @@ system_packages:
 # MkDocs configuration
 mkdocs:
   configuration: mkdocs.yml
-
-# Sphinx configuration
-sphinx:
-  configuration: docs/conf.py
 
 # Define hooks for before and after build
 hooks:
