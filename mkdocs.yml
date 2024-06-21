@@ -1,69 +1,21 @@
 site_name: CPD Project Documentation
 site_description: Documentation for a project built with React (TypeScript) and Node.js with MySQL.
 site_author: Stefan Spataro
+
 theme:
-  name: material
-  custom_dir: docs/theme
-  language: en
-  palette:
-    primary: 'indigo'
-    accent: 'indigo'
-  font:
-    text: Roboto
-    code: Roboto Mono
+  name: mkdocs
 
 nav:
   - Home: index.md
-  - Getting Started:
-      - Overview: getting-started/overview.md
-      - Installation: getting-started/installation.md
-      - Project Structure: getting-started/project-structure.md
-  - Frontend:
-      - Overview: frontend/overview.md
-      - Setup: frontend/setup.md
-      - Components: frontend/components.md
-      - State Management: frontend/state-management.md
-      - Routing: frontend/routing.md
-      - API Integration: frontend/api-integration.md
-  - Backend:
-      - Overview: backend/overview.md
-      - Setup: backend/setup.md
-      - Database:
-          - Schema: backend/database/schema.md
-          - Migrations: backend/database/migrations.md
-          - Seed Data: backend/database/seed-data.md
-      - API:
-          - Endpoints: backend/api/endpoints.md
-          - Authentication: backend/api/authentication.md
-          - Error Handling: backend/api/error-handling.md
-  - Deployment:
-      - Overview: deployment/overview.md
-      - Frontend Deployment: deployment/frontend.md
-      - Backend Deployment: deployment/backend.md
-  - Testing:
-      - Overview: testing/overview.md
-      - Frontend Testing: testing/frontend.md
-      - Backend Testing: testing/backend.md
-  - FAQ: faq.md
-  - Changelog: changelog.md
-
-markdown_extensions:
-  - admonition
-  - codehilite
-  - footnotes
-  - meta
-  - toc:
-      permalink: true
-
-extra_css:
-  - css/custom.css
-
-extra_javascript:
-  - js/custom.js
+  - Node.js:
+      - Getting Started: nodejs/getting-started.md
+      - API Reference: nodejs/api-reference.md
+  - React (TypeScript):
+      - Introduction: react/introduction.md
+      - Components: react/components.md
+  - MySQL:
+      - Setup Guide: mysql/setup.md
+      - Queries and Operations: mysql/queries.md
 
 plugins:
   - search
-  - mkdocs_material
-  - mkdocs_macros_plugin
-
-repo_url: https://github.com/Stefans217/cpd-development
