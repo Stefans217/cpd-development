@@ -2,3 +2,19 @@
     text-align: 'center';
     padding: 5rem 2rem 2rem;
 }
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start; 
+}
+
+.flex-column {
+    flex: 1;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center items horizontally */
+    background-color: aliceblue;
+}

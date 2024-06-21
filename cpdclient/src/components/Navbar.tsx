@@ -7,8 +7,8 @@ const Navbar: React.FC = () => {
     return (
         <nav className="navbar">
             <Link to="/" className="link">Home</Link>
-            <Link to="/about" className="link">About</Link>
-            <Link to="/Data" className="link">Data</Link>
+            <Link to="/upload" className="link">Upload</Link>
+            <Link to="/display" className="link">Display</Link>
         </nav>
     );
 };

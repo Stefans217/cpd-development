@@ -3,8 +3,9 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 
 import Navbar from './components/Navbar';
-import Data from './pages/Data';
+import Display from './pages/Display';
 import Home from './pages/Home';
+import Upload from './pages/Upload';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -16,8 +17,9 @@ function App() {
           <Navbar/>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/Data" element={<Data />}/>
-
+            <Route path="/upload" element={<Upload />}/>
+            <Route path="/display" element={<Display />}/>
+            
           </Routes>
         </div>
       </Router>

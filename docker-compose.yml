@@ -29,6 +29,10 @@ services:
             DB_USER: root
             DB_PASSWORD: rootpw
             DB_NAME: cpdsolution
+        volumes:
+            - ./backend/src:/app/src
+            - /usr/src/app/node_modules
+        command: npx nodemon -L --config nodemon.json
     client:
         build:
             context: cpdclient
