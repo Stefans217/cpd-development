@@ -12,11 +12,7 @@ python:
   install:
     - requirements: docs/requirements.txt
 
-# Specify additional system packages if needed
-system_packages:
-  - nodejs
-  - npm
-  - mysql-client
+
 
 # MkDocs configuration
 mkdocs:
