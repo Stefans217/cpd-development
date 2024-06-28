@@ -1,42 +1,40 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const pool = require('./dbConnection');
 const path = require('path');
-const log = require('./log');
 const cors = require('cors');
-const dataRoutes = require('./routes/dataRoutes');
+const passport = require('passport');
 
+const dataRoutes = require('./routes/dataRoutes');
+const dataUpload = require('./routes/dataUpload');
+const authentication = require('./routes/Register');
+const initializePassport = require('./passport-config');
+
+initializePassport(passport);
 
 const port = 80;
 const app = express();
 
 
 //Middleware
+app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'client/build')));
-app.use(cors());
 
 
 
+app.use('/api', dataUpload);
 app.use('/api', dataRoutes);
+app.use('/api', authentication);
 
 
 app.get('/', (req, res) => {
-  res.send('Backend Server');
+  if(req.isAuthenticated()){
+    res.send("Welcome!");
+  }else{
+    res.send("Please Login!");
+  }
 });
 
-
-// app.get('/api/data', async (req, res) => {
-//   const sql = 'SELECT * FROM business';
-//   try{
-//     const [results] = await pool.query(sql);
-//     console.log(results);
-//     res.json(results);
-//   }catch(e){
-//     res.status(500).send(e);
-//     console.error('error querying database: ', e)
-//   }
-// });
 
 
 

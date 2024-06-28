@@ -1,0 +1,4 @@
+the API folder is going to be for api requests to the node js server.
+
+For example, Display will call getproducts.ts, getcustomers.ts, and getbusinesses.ts
+as a method of fetching data through seperate files instead of clogging display.tsx

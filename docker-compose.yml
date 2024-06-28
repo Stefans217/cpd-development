@@ -20,6 +20,7 @@ services:
         build:
             context: backend
         container_name: cpd-server
+        restart: always
         ports:
             - '80:80' 
         depends_on:
@@ -31,19 +32,22 @@ services:
             DB_NAME: cpdsolution
         volumes:
             - ./backend/src:/app/src
-            - /usr/src/app/node_modules
+            - server-node_modules:/usr/src/app/node_modules
         command: npx nodemon -L --config nodemon.json
     client:
         build:
             context: cpdclient
+        container_name: cpd-client
         ports:
             - "5173:5173"
         depends_on:
             - backend
         volumes:
-            - ./cpdclient:/usr/src/app:delegated
-            - /usr/src/app/node_modules
+            - ./cpdclient:/app
+            - /app/node_modules
         environment:
             - CHOKIDAR_USEPOLLING=true
 volumes:
   cpd-data:
+  server-node_modules:
+  client-node_modules:

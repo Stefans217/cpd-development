@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../styles/Data.css";
+import "./Display.css";
 
 interface BusinessData {
   bid: number;
